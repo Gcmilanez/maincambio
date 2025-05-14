@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MainCâmbio - Correspondente Cambial</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Correções de estilo específicas -->
+  <style>
+    /* Corrige overlay do hero */
+    #hero::after {
+      background: rgba(0, 0, 0, 0.3); /* antes havia sintaxe inválida */
+    }
+    /* Menu toggle mobile */
+    .nav-menu { display: flex; gap: 1.2rem; }
+    .nav-menu.show { display: flex; flex-direction: column; background: #fff; position: absolute; top: 60px; left: 0; width: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .nav-menu.show { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <!-- Logo recarrega página (F5) -->
+      <a href="#" onclick="location.replace(location.href);">
+        <img src="imgs/logo.png" alt="MainCâmbio" class="logo">
+      </a>
+      <i class="fas fa-bars menu-toggle"></i>
+      <ul class="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">Sobre Nós</a></li>
+        <li><a href="#why">Por que</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#contact">Fale Conosco</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="container content">
+      <h1>Transforme Suas Operações de Câmbio</h1>
+      <p>Com segurança, agilidade e suporte especializado em cada etapa.</p>
+      <a href="#contact" class="btn">Fale Conosco</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container grid">
+      <div>
+        <h2>Quem Somos</h2>
+        <p>A MainCâmbio é um Correspondente Cambial credenciado ao Banco Central do Brasil, com mais de 10 anos de experiência. Oferecemos soluções estratégicas para proteger seu negócio contra oscilações cambiais, com serviços personalizados e consultoria especializada.</p>
+      </div>
+      <img src="https://via.placeholder.com/500x400" alt="Sobre MainCâmbio">
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container">
+      <h2>Por que escolher a MainCâmbio?</h2>
+      <div class="cards">
+        <div class="card"><i class="fas fa-shield-alt"></i><h3>Confiança</h3><p>Credenciados pelo Banco Central, atuamos com ética e transparência.</p></div>
+        <div class="card"><i class="fas fa-bolt"></i><h3>Agilidade</h3><p>Processamento em até 1 dia útil, sem burocracia e com atendimento dedicado.</p></div>
+        <div class="card"><i class="fas fa-user-tie"></i><h3>Suporte</h3><p>Gerentes de câmbio especializados acompanhando cada etapa da operação.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Nossos Serviços</h2>
+      <div class="grid">
+        <div><i class="fas fa-chart-line"></i><h3>Comparação de Taxas</h3></div>
+        <div><i class="fas fa-hand-holding-usd"></i><h3>Compra & Venda</h3></div>
+        <div><i class="fas fa-globe"></i><h3>Transferências</h3></div>
+        <div><i class="fas fa-calendar-alt"></i><h3>Câmbio Futuro</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="container">
+      <h2>Nossos Parceiros</h2>
+      <div class="partners-logos">
+        <img src="imgs/banco_braza.png" alt="Banco Braza">
+        <img src="imgs/banco_bs2.png" alt="Banco BS2">
+        <img src="imgs/banco_semear.png" alt="Banco Semear">
+        <img src="imgs/banco_topazio.png" alt="Banco Topázio">
+      </div>
+    </div>
+  </section>
+
+  <section id="clients">
+    <div class="container">
+      <h2>Clientes que Confiam</h2>
+      <ul>
+        <li>FERRADURAS ZANELATTI LTDA</li>
+        <li>COLI SHIPMENT DO BRASIL</li>
+        <li>BRN METAIS</li>
+        <li>DSB DO BRASIL</li>
+        <li>XPEL DO BRASIL</li>
+        <li>FEMAT REPRESENTAÇÕES</li>
+        <li>LINDA CASA ENXOVAIS LTDA</li>
+        <li>FORCEAD MEDIA SERVIÇOS LTDA</li>
+        <li>MASTER DISTRIBUIDORA LTDA</li>
+        <li>COLD HOUSE BRASIL LTDA</li>
+        <li>ATLANTIC COAST AGÊNCIA MARÍTIMA LTDA</li>
+        <li>SHARING COMERCIAL EXPORTADORA E IMPORTADORA LTDA</li>
+        <li>PLÁSTICOS DISE DO BRASIL LTDA</li>
+        <li>D3 DISTRIBUIDORA DE ACABAMENTOS LTDA</li>
+        <li>ATLANTA INDÚSTRIA IMPORTAÇÃO E COMÉRCIO LTDA</li>
+        <li>GRIFO MARINE AGENCIAMENTO MARÍTIMO LTDA</li>
+        <li>BLONDESALAD COMÉRCIO DE ACESSÓRIOS E ARTIGOS DE DECORAÇÃO LTDA</li>
+        <li>TARGET HAUS SERVIÇOS DE INTERNET LTDA</li>
+        <li>SKYTRADING</li>
+        <li>L & L VÁZQUEZ AR CONDICIONADOS</li>
+        <li>PHJG – FARMACLASS MEDICAMENTOS</li>
+        <li>KARAN SPORTS</li>
+        <li>GRADDUS PISOS LAMINADOS</li>
+        <li>SUPER GLOBO</li>
+        <li>SUB4 TURISMO ESPORTIVO</li>
+        <li>NEREUS SHIPMENT</li>
+        <li>MGL GROUP</li>
+        <li>ONE OPEN FINANCE</li>
+        <li>CAMA ELÁSTICA RS</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>Fale Conosco</h2>
+    <div class="contact-container">
+      <form>
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" placeholder="Seu nome" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Seu email" required>
+        <label for="phone">Telefone</label>
+        <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+      <div class="info">
+        <h3>Contato & Endereço</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Porto Alegre - RS</p>
+        <p><i class="fas fa-id-card"></i> CNPJ: 36.341.648/0001-79</p>
+        <p><i class="fas fa-envelope"></i> maincambio@maincambio.com.br</p>
+        <p><i class="fas fa-phone"></i> +55 51 9150-5422</p>
+        <p><i class="fab fa-instagram"></i> @maincambio</p>
+      </div>
+    </div>
+  </section>
+
+  <a href="https://api.whatsapp.com/send?phone=555191505422" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp fa-2x"></i></a>
+
+  <footer>
+    <p>&copy; 2025 MainCâmbio. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.nav-menu');
+    toggle.addEventListener('click', ()=> menu.classList.toggle('show'));
+  </script>
+</body>
+</html>
