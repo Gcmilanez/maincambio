@@ -4,31 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MainCâmbio - Correspondente Cambial</title>
-  <!-- Google Fonts -->
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Favicon -->
   <link rel="icon" href="imgs/logo.png" type="image/png">
-  <!-- CSS externo -->
   <link rel="stylesheet" href="style.css">
-  <!-- Correções de estilo específicas -->
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-  <script>
-    // Inicialize com seu USER_ID da EmailJS
-    emailjs.init('YOUR_EMAILJS_USER_ID');
 
+  <script>
+    (function() {
+      function applyTheme() {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+        }
+      }
+      applyTheme();
+      window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+          applyTheme();
+        }
+      });
+    })();
   </script>
+
 </head>
 <body>
   <header>
     <div class="container nav">
-      <!-- Logo recarrega página (F5) -->
       <a href="#" onclick="location.replace(location.href);">
         <img src="imgs/logo.png" alt="MainCâmbio" class="logo">
       </a>
-      <i class="fas fa-bars menu-toggle"></i>
       <ul class="nav-menu">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">Sobre Nós</a></li>
@@ -36,36 +42,47 @@
         <li><a href="#services">Serviços</a></li>
         <li><a href="#contact">Fale Conosco</a></li>
       </ul>
+      <div class="theme-switch-wrapper">
+        <i class="fas fa-sun"></i>
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider-toggle round"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+      </div>
+      <i class="fas fa-bars menu-toggle"></i>
     </div>
   </header>
 
-<!-- HTML do slider no lugar do #hero -->
-<section id="hero">
-  <div class="slider">
-    <div class="slides">
-      <div class="slide" style="background-image:url('imgs/navio.jpg')">
-        <div class="slide-text">
-          <h2>Proteja Seu Negócio<br>Contra Oscilações Cambiais</h2>
-          <p>Taxas competitivas, consultoria especializada e atendimento personalizado para suas operações internacionais. Garanta segurança e agilidade em cada transação.</p>
+  <section id="hero">
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="imgs/navio.jpg" alt="Navio de carga representando o comércio internacional">
+          <div class="slide-text">
+            <h2>Proteja Seu Negócio<br>Contra Oscilações Cambiais</h2>
+            <p>Taxas competitivas, consultoria especializada e atendimento personalizado para suas operações internacionais. Garanta segurança e agilidade em cada transação.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="imgs/container.jpg" alt="Containers de carga empilhados em um porto">
+          <div class="slide-text">
+            <h2>As Melhores Taxas<br>Para Sua Empresa</h2>
+            <p>Comparação automática de cotações em tempo real, sem burocracia e com aprovação em até 1 dia útil. Economize em cada operação com total transparência.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="imgs/business.jpg" alt="Pessoas em reunião de negócios analisando gráficos">
+          <div class="slide-text">
+            <h2>Câmbio Estratégico<br>Para Expandir Seu Negócio</h2>
+            <p>Soluções de câmbio futuro, hedge e transferências internacionais. Conte com nossa experiência para levar sua empresa a novos mercados com total segurança.</p>
+          </div>
         </div>
       </div>
-      <div class="slide" style="background-image:url('imgs/container.jpg')">
-        <div class="slide-text">
-          <h2>As Melhores Taxas<br>Para Sua Empresa</h2>
-          <p>Comparação automática de cotações em tempo real, sem burocracia e com aprovação em até 1 dia útil. Economize em cada operação com total transparência.</p>
-        </div>
-      </div>
-      <div class="slide" style="background-image:url('imgs/business.jpg')">
-        <div class="slide-text">
-          <h2>Câmbio Estratégico<br>Para Expandir Seu Negócio</h2>
-          <p>Soluções de câmbio futuro, hedge e transferências internacionais. Conte com nossa experiência para levar sua empresa a novos mercados com total segurança.</p>
-        </div>
-      </div>
+      <button class="prev">‹</button>
+      <button class="next">›</button>
     </div>
-    <button class="prev">‹</button>
-    <button class="next">›</button>
-  </div>
-</section>
+  </section>
 
   <section id="about">
     <div class="container grid">
@@ -74,99 +91,37 @@
         <p>Somos uma fintech de câmbio credenciada pelo Banco Central do Brasil, atuando como correspondente cambial para intermediar suas operações internacionais. Cadastramos você em diferentes bancos e corretoras, comparamos taxas e tarifas em tempo real e escolhemos sempre a melhor opção de custo-benefício. Nossas soluções incluem travas futuras e estratégias de proteção financeira para reduzir os riscos da volatilidade cambial e tornar suas operações mais seguras e previsíveis. Com a MainCâmbio como parceira, você fica livre para expandir seus negócios globalmente, enquanto cuidamos dos seus interesses financeiros.
 <br><strong>“Exporte Tarefas e Importe Resultados”</strong></p>
       </div>
-      <img src="imgs/cambio.png" alt="Sobre MainCâmbio" style="  display: block;  width: 100%; height: auto; border-radius: 0; border-radius: 8px; overflow: hidden;">
+      <img src="imgs/cambio.png" alt="Sobre MainCâmbio" style="display: block; width: 100%; height: auto; border-radius: 8px; overflow: hidden;">
+    </div>
+  </section>
+  
+  <section id="why">
+    <div class="container">
+      <h2>Por que escolher a MainCâmbio?</h2>
+      <div class="cards">
+        <div class="card"><i class="fas fa-shield-alt"></i><h3>Confiança</h3><p>Credenciados pelo Banco Central, nossos profissionais atuam com ética e transparência.</p></div>
+        <div class="card"><i class="fas fa-bolt"></i><h3>Agilidade</h3><p>Processamento em até 1 dia útil, sem burocracia e com atendimento dedicado.</p></div>
+        <div class="card"><i class="fas fa-user-tie"></i><h3>Suporte</h3><p>Gerentes de câmbio especializados acompanhando cada etapa da operação.</p></div>
+        <div class="card"><i class="fas fa-calculator"></i><h3>Simulação</h3><p>Antecipação do valor da operação, garantindo transparência antes da efetivação.</p></div>
+        <div class="card"><i class="fas fa-user-cog"></i><h3>Personalização</h3><p>Soluções sob medida para o seu negócio, adaptando processos e serviços às suas necessidades específicas.</p></div>
+        <div class="card"><i class="fas fa-globe-americas"></i><h3>Cobertura Global</h3><p>Atuação em múltiplos mercados internacionais, oferecendo suporte em várias moedas e jurisdições.</p></div>
+      </div>
     </div>
   </section>
 
-<section id="why">
-  <div class="container">
-    <h2>Por que escolher a MainCâmbio?</h2>
-    <div class="cards">
-      <div class="card">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Confiança</h3>
-        <p>Credenciados pelo Banco Central, nossos profissionais atuam com ética e transparência.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-bolt"></i>
-        <h3>Agilidade</h3>
-        <p>Processamento em até 1 dia útil, sem burocracia e com atendimento dedicado.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-user-tie"></i>
-        <h3>Suporte</h3>
-        <p>Gerentes de câmbio especializados acompanhando cada etapa da operação.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-calculator"></i>
-        <h3>Simulação</h3>
-        <p>Antecipação do valor da operação, garantindo transparência antes da efetivação.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-user-cog"></i>
-        <h3>Personalização</h3>
-        <p>Soluções sob medida para o seu negócio, adaptando processos e serviços às suas necessidades específicas.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-globe-americas"></i>
-        <h3>Cobertura Global</h3>
-        <p>Atuação em múltiplos mercados internacionais, oferecendo suporte em várias moedas e jurisdições.</p>
+  <section id="services">
+    <div class="container">
+      <h2>Nossos Serviços</h2>
+      <div class="grid">
+        <div class="service-item"><i class="fas fa-chart-line" style="color: var(--primary);"></i><h3>Comparação de Taxas</h3><div class="service-description">Através de parcerias com várias instituições financeiras podemos realizar a melhor conversão do câmbio, tarifas de envio e recebimento.</div></div>
+        <div class="service-item"><i class="fas fa-hand-holding-usd" style="color: var(--primary);"></i><h3>Recebimento &amp; Venda</h3><div class="service-description">Operamos com recebimento e venda de moedas. Garantimos suporte completo em todas as etapas, seja recebimento de valores em moeda estrangeira ou pagamentos no exterior.</div></div>
+        <div class="service-item"><i class="fas fa-globe" style="color: var(--primary);"></i><h3>Transferências</h3><div class="service-description">Câmbio financeiro envolvendo remessa entre o Brasil e o exterior: para pagamento de consultoria, softwares ou publicidade internacional, investir em outros países ou receber e enviar capital estrangeiro.</div></div>
+        <div class="service-item"><i class="fas fa-calendar-alt" style="color: var(--primary);"></i><h3>Câmbio Futuro</h3><div class="service-description">Câmbio futuro, travando uma taxa futura para pagamento ou recebimento. Trade Finance para auxílio em operações de exportação.</div></div>
+        <div class="service-item"><i class="fas fa-umbrella" style="color: var(--primary);"></i><h3>Proteção Cambial</h3><div class="service-description">Estratégias de hedge para mitigar variações cambiais e proteger o fluxo de caixa da sua empresa contra oscilações de mercado.</div></div>
+        <div class="service-item"><i class="fas fa-handshake" style="color: var(--primary);"></i><h3>Trade Finance</h3><div class="service-description">Soluções de Trade Finance para reforçar o capital de giro em operações de exportação e apoiar suas transações internacionais.</div></div>
       </div>
     </div>
-  </div>
-</section>
-
-
-
-<section id="services">
-  <div class="container">
-    <h2>Nossos Serviços</h2>
-    <div class="grid">
-      <div class="service-item">
-        <i class="fas fa-chart-line" style="color: var(--primary);"></i>
-        <h3>Comparação de Taxas</h3>
-        <div class="service-description">
-          Através de parcerias com várias instituições financeiras podemos realizar a melhor conversão do câmbio, tarifas de envio e recebimento.
-        </div>
-      </div>
-      <div class="service-item">
-        <i class="fas fa-hand-holding-usd" style="color: var(--primary);"></i>
-        <h3>Recebimento &amp; Venda</h3>
-        <div class="service-description">
-        Operamos com recebimento e venda de moedas. Garantimos suporte completo em todas as etapas, seja recebimento de valores em moeda estrangeira ou pagamentos no exterior.        
-        </div>
-      </div>
-      <div class="service-item">
-        <i class="fas fa-globe" style="color: var(--primary);"></i>
-        <h3>Transferências</h3>
-        <div class="service-description">
-          Câmbio financeiro envolvendo remessa entre o Brasil e o exterior: para pagamento de consultoria, softwares ou publicidade internacional, investir em outros países ou receber e enviar capital estrangeiro.
-        </div>
-      </div>
-      <div class="service-item">
-        <i class="fas fa-calendar-alt" style="color: var(--primary);"></i>
-        <h3>Câmbio Futuro</h3>
-        <div class="service-description">
-          Câmbio futuro, travando uma taxa futura para pagamento ou recebimento. Trade Finance para auxílio em operações de exportação.
-        </div>
-      </div>
-      <div class="service-item">
-        <i class="fas fa-umbrella" style="color: var(--primary);"></i>
-        <h3>Proteção Cambial</h3>
-        <div class="service-description">
-          Estratégias de hedge para mitigar variações cambiais e proteger o fluxo de caixa da sua empresa contra oscilações de mercado.
-        </div>
-      </div>
-      <div class="service-item">
-        <i class="fas fa-handshake" style="color: var(--primary);"></i>
-        <h3>Trade Finance</h3>
-        <div class="service-description">
-          Soluções de Trade Finance para reforçar o capital de giro em operações de exportação e apoiar suas transações internacionais.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <section id="partners">
     <div class="container">
@@ -175,183 +130,45 @@
         <img src="imgs/banco_braza.png" alt="Banco Braza">
         <img src="imgs/banco_bs2.png" alt="Banco BS2">
         <img src="imgs/banco_semear.png" alt="Banco Semear">
-        <img src="imgs/banco_topazio.png" alt="Banco Topázio">
       </div>
     </div>
   </section>
 
-
-<section id="contact" class="container">
-  <h2>Fale Conosco</h2>
-  <!-- Mapa ou localização estática -->
-  <div class="contact-container">
-    <form id="contactForm">
-      <label for="name">Nome</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Seu nome"
-        required
-        pattern="[A-Za-zÀ-ÿ\s]+"
-        title="Use somente letras"
-      />
-
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Seu email"
-        required
-      />
-
-      <label for="phone">Telefone</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="DDXXXXXXXXX"
-        required
-        pattern="\d{10,11}"
-        title="Use somente números"
-      />
-
-      <label for="message">Mensagem</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="4"
-        placeholder="Sua mensagem"
-        required
-      ></textarea>
-
-      <button type="submit">Enviar Mensagem</button>
-    </form>
-
-    <div class="info">
-      <h3>Contato & Endereço</h3>
-      <p><i class="fas fa-map-marker-alt"></i> Porto Alegre - RS</p>
-      <p><i class="fas fa-id-card"></i> CNPJ: 36.341.648/0001-79</p>
-      <p><i class="fas fa-envelope"></i> maincambio@maincambio.com.br</p>
-      <p><i class="fas fa-phone"></i> +55 51 9150-5422</p>
-      <p>
-        <a href="https://www.instagram.com/maincambio" target="_blank">
-          <i class="fab fa-instagram"></i> @maincambio
-        </a>
-      </p>
+  <section id="contact" class="container">
+    <h2>Fale Conosco</h2>
+    <div class="contact-container">
+      <form id="contactForm">
+        <label for="name">Nome</label><input type="text" id="name" name="name" placeholder="Seu nome" required pattern="[A-Za-zÀ-ÿ\s]+" title="Use somente letras"/>
+        <label for="email">Email</label><input type="email" id="email" name="email" placeholder="Seu email" required/>
+        <label for="phone">Telefone</label><input type="tel" id="phone" name="phone" placeholder="DDXXXXXXXXX" required pattern="\d{10,11}" title="Use somente números"/>
+        <label for="message">Mensagem</label><textarea id="message" name="message" rows="4" placeholder="Sua mensagem" required></textarea>
+        <button type="submit">Enviar Mensagem</button>
+      </form>
+      <div class="info">
+        <h3>Contato & Endereço</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Porto Alegre - RS</p>
+        <p><i class="fas fa-id-card"></i> CNPJ: 36.341.648/0001-79</p>
+        <p><i class="fas fa-envelope"></i> maincambio@maincambio.com.br</p>
+        <p><i class="fas fa-phone"></i> +55 51 9150-5422</p>
+        <p><a href="https://www.instagram.com/maincambio" target="_blank"><i class="fab fa-instagram"></i> @maincambio</a></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <a href="https://api.whatsapp.com/send?phone=555191505422" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp fa-2x"></i></a>
 
   <footer>
     <p>&copy; 2025 MainCâmbio. Todos os direitos reservados.</p>
+    <div class="footer-security">
+      <div class="security-seal"><i class="fas fa-lock"></i><span>Ambiente Seguro</span></div>
+      <a href="politica-de-privacidade.html" class="privacy-link">Política de Privacidade e LGPD</a>
+    </div>
   </footer>
+
   <div class="developer-credit" style="text-align:center; padding:0.5rem 0; font-size:0.85rem;">
     Desenvolvido por Giovanni Milanez <a href="https://www.linkedin.com/in/giovanni-milanez-047704267/" target="_blank" style="margin-left:0.5rem;"><i class="fab fa-linkedin"></i></a>
   </div>
 
-  <script>
-    let index = 0;
-    let currentIndex = 0;
-    
-    const slides = document.querySelector('.slides');
-    const totalSlides = document.querySelectorAll('.slide').length;
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.nav-menu');
-    toggle.addEventListener('click', ()=> menu.classList.toggle('show'));
-
-    document.querySelector('.next').addEventListener('click', () => {
-      index = (index + 1) % totalSlides;
-      updateSlider();
-    });
-    document.querySelector('.prev').addEventListener('click', () => {
-      index = (index - 1 + totalSlides) % totalSlides;
-      updateSlider();
-    });
-
-    const showSlide = index => {
-      currentIndex = (index + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    };
-
-    function updateSlider() {
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-        // Só letras no nome
-    document.getElementById('name').addEventListener('input', function() {
-      this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
-    });
-    // Só números no telefone
-    document.getElementById('phone').addEventListener('input', function() {
-      this.value = this.value.replace(/\D/g, '');
-    });
-
-    // Envio Email
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const nome     = this.name.value.trim();
-        const email    = this.email.value.trim();
-        const phone    = this.phone.value.trim();
-        const mensagem = this.message.value.trim();
-
-        const subject = encodeURIComponent(`Contato de ${nome}`);
-        const body = encodeURIComponent(
-          `Nome: ${nome}\n` +
-          `Email: ${email}\n` +
-          `Telefone: ${phone}\n\n` +
-          `Mensagem:\n${mensagem}`
-        );
-
-        const mailtoUrl = 
-          `mailto:giovanni.milanez@gmail.com?subject=${subject}&body=${body}`;
-
-        // Abre o cliente de email do usuário já com tudo preenchido
-        window.open(mailtoUrl);
-
-        // Mostra mensagem de confirmação
-        alert('Seu cliente de email foi aberto com a mensagem. Basta clicar em "Enviar" para concluir o contato.');
-        
-        // Opcional: limpa o formulário
-        this.reset();
-    });
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Seleciona todos os títulos dentro de <section>
-      const headings = document.querySelectorAll('section h2');
-
-      // Configuração do Observer: disparar quando 10% do h2 estiver visível
-      const observerOptions = {
-        root: null,            // viewport
-        rootMargin: '0px',
-        threshold: 0.1         // 10% visível
-      };
-
-      // Callback executado quando o h2 entra/sai da viewport
-      const observerCallback = (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Adiciona a classe que dispara a animação do ::after
-            entry.target.classList.add('in-view');
-            // Parar de observar este elemento (animação só uma vez)
-            observer.unobserve(entry.target);
-          }
-        });
-      };
-
-      // Cria o IntersectionObserver
-      const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-      // Começa a observar cada h2
-      headings.forEach(h2 => {
-        observer.observe(h2);
-      });
-    });
-
-    setInterval(() => showSlide(currentIndex + 1), 10000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
