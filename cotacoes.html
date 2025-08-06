@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotações de Moedas - MainCâmbio</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <script>
+    (function() {
+      function applyTheme() {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+        }
+      }
+      applyTheme();
+      window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+          applyTheme();
+        }
+      });
+    })();
+  </script>
+  
+  <style>
+    .main-content { margin: 100px auto 60px auto; max-width: 1000px; padding: 0 2rem; }
+    .chart-controls { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .chart-controls select, .chart-controls button { padding: 0.7rem 1rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; }
+    .chart-container { background: var(--bg-card); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px var(--shadow-color); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html">
+        <img src="imgs/logo.png" alt="MainCâmbio" class="logo">
+      </a>
+      
+      <ul class="nav-menu">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="cotacoes.html">Cotações</a></li>
+        <li><a href="index.html#about">Sobre Nós</a></li>
+        <li><a href="index.html#services">Serviços</a></li>
+        <li><a href="index.html#contact">Fale Conosco</a></li>
+      </ul>
+
+      <div class="theme-switch-wrapper">
+        <i class="fas fa-sun"></i>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider-toggle round"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+      </div>
+      
+      <i class="fas fa-bars menu-toggle"></i>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section id="cotacoes">
+      <h2>Acompanhe o Mercado de Câmbio</h2>
+      
+        <div class="chart-controls">
+            <label for="currency-select">Moeda:</label>
+                <select id="currency-select">
+                <option value="USD-BRL" selected>Dólar Americano (USD)</option>
+                <option value="AUD-BRL">Dólar Australiano (AUD)</option>
+                <option value="CAD-BRL">Dólar Canadense (CAD)</option>
+                <option value="CHF-BRL">Franco Suíço (CHF)</option>
+                <option value="CNY-BRL">Yuan Chinês (CNY)</option>
+                <option value="EUR-BRL">Euro (EUR)</option>
+                <option value="GBP-BRL">Libra Esterlina (GBP)</option>
+                <option value="JPY-BRL">Iene Japonês (JPY)</option>
+                <option value="ARS-BRL">Peso Argentino (ARS)</option>
+                <option value="CLP-BRL">Peso Chileno (CLP)</option>
+                <option value="UYU-BRL">Peso Uruguaio (UYU)</option>
+            </select>
+
+            <label for="period-select">Período:</label>
+            <select id="period-select">
+                <option value="7" selected>Últimos 7 dias</option>
+                <option value="15">Últimos 15 dias</option>
+                <option value="30">Últimos 30 dias</option>
+            </select>
+        </div>
+
+      <div class="chart-container">
+        <canvas id="currencyChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <a href="https://api.whatsapp.com/send?phone=555191505422" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp fa-2x"></i></a>
+
+  <footer>
+    <p>&copy; 2025 MainCâmbio. Todos os direitos reservados.</p>
+    <div class="footer-security">
+      <div class="security-seal"><i class="fas fa-lock"></i><span>Ambiente Seguro</span></div>
+      <a href="politica-de-privacidade.html" class="privacy-link">Política de Privacidade e LGPD</a>
+    </div>
+  </footer>
+
+  <div class="developer-credit" style="text-align:center; padding:0.5rem 0; font-size:0.85rem;">
+    Desenvolvido por Giovanni Milanez <a href="https://www.linkedin.com/in/giovanni-milanez-047704267/" target="_blank" style="margin-left:0.5rem;"><i class="fab fa-linkedin"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="cotacoes.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
