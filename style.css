@@ -21,8 +21,8 @@ html.dark-mode {
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font); color: var(--text-dark); line-height:1.6; background:var(--bg-light); transition: background 0.3s, color 0.3s; }
+html { scroll-behavior: smooth; height: 100%;}
+body { font-family: var(--font); color: var(--text-dark); line-height:1.6; background:var(--bg-light); transition: background 0.3s, color 0.3s; height: 100%;}
 a { text-decoration:none; color:inherit; }
 ul { list-style:none; }
 img { max-width:100%; display:block; }
@@ -122,7 +122,76 @@ html.dark-mode .security-seal,
 html.dark-mode .privacy-link { color: #aaa; }
 html.dark-mode .privacy-link:hover { color: var(--secondary); }
 
-@media(max-width:768px) {
+/* --- Estilos para a página de Cotações --- */
+.main-content {
+    margin: 100px auto 60px auto;
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center; /* Alinhar verticalmente os elementos */
+}
+
+.chart-controls label {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-right: 0.5rem; /* Espaço entre a label e o select */
+}
+
+.chart-controls select {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Mais arredondado */
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+html.dark-mode .chart-controls select {
+    background-color: var(--bg-card);
+    color: var(--text-dark);
+    border-color: #555;
+}
+
+.chart-controls select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 106, 238, 0.25);
+}
+
+.chart-controls button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chart-controls button:hover {
+    background-color: var(--secondary);
+}
+
+.chart-container {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+
+
+@media(max-width:992px) {
     .menu-toggle { display: block; }
     .nav-menu { align-items: center; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: var(--bg-card); box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; max-height: 0; transition: max-height 0.5s ease; }
     .nav-menu.show { max-height: 500px; padding-bottom: 1rem; }

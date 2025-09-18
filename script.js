@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- LÓGICA DO SLIDER (COM RESET DE TIMING) ---
-    let currentIndex = 0;
-    const slides = document.querySelector('.slides');
-    if (slides) {
-        let slideInterval; // Variável para guardar o ID do nosso temporizador
+    const sliderSection = document.getElementById('hero');
+    if (sliderSection) {
+        let currentIndex = 0;
+        const slides = document.querySelector('.slides');
+        let slideInterval;
         const totalSlides = document.querySelectorAll('.slide').length;
 
         const showSlide = (index) => {
@@ -12,14 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
             slides.style.transform = `translateX(-${currentIndex * 100}%)`;
         };
 
-        // Função que inicia o temporizador automático
         const startSlideTimer = () => {
             slideInterval = setInterval(() => {
                 showSlide(currentIndex + 1);
-            }, 10000); // 10 segundos
+            }, 10000);
         };
 
-        // Função que reseta o temporizador
         const resetSlideTimer = () => {
             clearInterval(slideInterval); 
             startSlideTimer(); 
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
             resetSlideTimer(); 
         });
 
-        // Inicia o temporizador pela primeira vez quando a página carrega
         startSlideTimer();
     }
     
@@ -46,23 +44,49 @@ document.addEventListener('DOMContentLoaded', function() {
         toggle.addEventListener('click', () => menu.classList.toggle('show'));
     }
 
-    // --- VALIDAÇÃO E ENVIO DO FORMULÁRIO ---
+    // --- VALIDAÇÃO E ENVIO DO FORMULÁRIO (VERSÃO ATUALIZADA) ---
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        document.getElementById('name').addEventListener('input', function() { this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, ''); });
-        document.getElementById('phone').addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
+        document.getElementById('name').addEventListener('input', function() { 
+            this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, ''); 
+        });
+        document.getElementById('phone').addEventListener('input', function() { 
+            this.value = this.value.replace(/\D/g, ''); 
+        });
+
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nome = this.name.value.trim();
-            const email = this.email.value.trim();
-            const phone = this.phone.value.trim();
-            const mensagem = this.message.value.trim();
-            const subject = encodeURIComponent(`Contato de ${nome}`);
-            const body = encodeURIComponent(`Nome: ${nome}\nEmail: ${email}\nTelefone: ${phone}\n\nMensagem:\n${mensagem}`);
-            const mailtoUrl = `mailto:giovanni.milanez@gmail.com?subject=${subject}&body=${body}`;
-            window.open(mailtoUrl);
-            alert('Seu cliente de email foi aberto com a mensagem. Basta clicar em "Enviar" para concluir o contato.');
-            this.reset();
+            e.preventDefault(); 
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+
+            const formData = new FormData(this);
+
+            fetch('enviar_email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Houve um problema com a resposta do servidor.');
+            })
+            .then(successMessage => {
+                alert(successMessage);
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Erro ao enviar formulário:', error);
+                alert('Não foi possível enviar sua mensagem. Por favor, tente novamente mais tarde.');
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
         });
     }
 
@@ -86,13 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         function syncThemeButtonState() {
-            if (document.documentElement.classList.contains('dark-mode')) {
-                themeToggle.checked = true;
-            } else {
-                themeToggle.checked = false;
-            }
+            themeToggle.checked = document.documentElement.classList.contains('dark-mode');
         }
+        
         syncThemeButtonState();
+
         themeToggle.addEventListener('change', function() {
             if (this.checked) {
                 document.documentElement.classList.add('dark-mode');
@@ -102,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('theme', 'light');
             }
         });
+        
         window.addEventListener('pageshow', function(event) {
             if (event.persisted) {
                 syncThemeButtonState();
