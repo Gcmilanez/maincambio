@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // --- CONFIGURAÇÃO DO E-MAIL ---
     $destinatario = EMAIL_DESTINATARIO;
-    $assunto = "Nova mensagem do site MainCâmbio de: $nome";
+    $assunto = "Nova mensagem do site MainCambio de: $nome";
 
     // Corpo do e-mail
     $corpo_email = "Você recebeu uma nova mensagem do formulário de contato do site.\n\n";
