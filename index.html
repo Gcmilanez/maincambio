@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MainCâmbio - Correspondente Cambial</title>
   
+    <!-- Preload fontes e CSS crítico -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+
+  <!-- Preload primeira imagem do slider -->
+  <link rel="preload" as="image" href="imgs/navio.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="imgs/logo.png" type="image/png">
@@ -59,21 +66,21 @@
     <div class="slider">
       <div class="slides">
         <div class="slide">
-          <img src="imgs/navio.jpg" alt="Navio de carga representando o comércio internacional">
+          <img src="imgs/navio.jpg" alt="Navio de carga representando o comércio internacional" class="lazy-slide">
           <div class="slide-text">
             <h2>Proteja Seu Negócio<br>Contra Oscilações Cambiais</h2>
             <p>Taxas competitivas, consultoria especializada e atendimento personalizado para suas operações internacionais. Garanta segurança e agilidade em cada transação.</p>
           </div>
         </div>
         <div class="slide">
-          <img src="imgs/container.jpg" alt="Containers de carga empilhados em um porto">
+          <img src="imgs/container.jpg" alt="Containers de carga empilhados em um porto" class="lazy-slide">
           <div class="slide-text">
             <h2>As Melhores Taxas<br>Para Sua Empresa</h2>
             <p>Comparação automática de cotações em tempo real, sem burocracia e com aprovação em até 1 dia útil. Economize em cada operação com total transparência.</p>
           </div>
         </div>
         <div class="slide">
-          <img src="imgs/business.jpg" alt="Pessoas em reunião de negócios analisando gráficos">
+          <img src="imgs/business.jpg" alt="Pessoas em reunião de negócios analisando gráficos" class="lazy-slide">
           <div class="slide-text">
             <h2>Câmbio Estratégico<br>Para Expandir Seu Negócio</h2>
             <p>Soluções de câmbio futuro, hedge e transferências internacionais. Conte com nossa experiência para levar sua empresa a novos mercados com total segurança.</p>
@@ -100,7 +107,7 @@
         <br><strong>Menos burocracia, mais resultado.</strong>
     </p>
 </div>
-      <img src="imgs/cambio.png" alt="Sobre MainCâmbio" style="display: block; width: 100%; height: auto; border-radius: 8px; overflow: hidden;">
+      <img src="imgs/cambio.png" alt="Sobre MainCâmbio" style="display: block; width: 100%; height: auto; border-radius: 8px; overflow: hidden;" >
     </div>
   </section>
   
