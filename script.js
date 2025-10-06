@@ -130,5 +130,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 syncThemeButtonState();
             }
         });
+
+      if (window.innerWidth <= 998) {
+        const serviceItems = document.querySelectorAll('.service-item');
+        
+        // Cria o observer para detectar quando o elemento está no centro
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Remove classe active de todos
+              serviceItems.forEach(item => item.classList.remove('active'));
+              // Adiciona classe active ao elemento no centro
+              entry.target.classList.add('active');
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '-45% 0px -45% 0px', // Detecta apenas quando está no centro
+          threshold: 0
+        });
+        
+        // Observa cada item de serviço
+        serviceItems.forEach(item => {
+          observer.observe(item);
+        });
+      }
     }
 });
