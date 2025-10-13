@@ -112,7 +112,7 @@ html.dark-mode footer p { color: #aaa; }
 .whatsapp-float { position:fixed; bottom:20px; right:20px; background:var(--accent); color:#fff; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:transform .3s; }
 .whatsapp-float:hover { transform:scale(1.1); }
    
-.menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+.menu-toggle { display: none !important; cursor: pointer; font-size: 1.5rem; }
 
 .footer-security { display: flex; justify-content: center; align-items: center; gap: 1.5rem; padding: 0.5rem 0; flex-wrap: wrap; }
 .security-seal { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #555; }
@@ -192,7 +192,7 @@ html.dark-mode .chart-controls select {
 
 
 @media(max-width:992px) {
-    .menu-toggle { display: block; }
+    .menu-toggle { display: block !important;  }
     .nav-menu { align-items: center; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: var(--bg-card); box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; max-height: 0; transition: max-height 0.5s ease; }
     .nav-menu.show { max-height: 500px; padding-bottom: 1rem; }
     .nav .menu-toggle { display:block; font-size:1.5rem; cursor:pointer; }
