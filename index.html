@@ -48,8 +48,12 @@
   <link rel="preload" as="script" href="script.js">
   
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="imgs/logo.png">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   
   <!-- CSS Crítico Inline - Carrega instantaneamente -->
   <style>
@@ -171,7 +175,7 @@
           <picture>
             <source srcset="imgs/container.webp" type="image/webp">
             <img src="imgs/container.jpg" alt="Containers de carga empilhados em um porto" 
-                 loading="lazy" width="1920" height="1080">
+                 loading="eager" width="1920" height="1080">
           </picture>
           <div class="slide-text">
             <h2>As Melhores Taxas<br>Para Sua Empresa</h2>
@@ -183,7 +187,7 @@
           <picture>
             <source srcset="imgs/business.webp" type="image/webp">
             <img src="imgs/business.jpg" alt="Pessoas em reunião de negócios analisando gráficos" 
-                 loading="lazy" width="1920" height="1080">
+                 loading="eager" width="1920" height="1080">
           </picture>
           <div class="slide-text">
             <h2>Câmbio Estratégico<br>Para Expandir Seu Negócio</h2>
