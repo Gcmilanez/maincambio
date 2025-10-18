@@ -167,6 +167,22 @@ AddDefaultCharset UTF-8
     mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 </IfModule>
 
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} (.*)\.(jpe?g|png)$ [NC]
+    RewriteCond %{DOCUMENT_ROOT}/%1.webp -f
+    RewriteRule (.*)\.(jpe?g|png)$ %{DOCUMENT_ROOT}/$1.webp [T=image/webp,E=accept:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+</IfModule>
+
 # =================================================================
 # FIM DAS CONFIGURAÇÕES
 # =================================================================
