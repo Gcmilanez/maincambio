@@ -1,37 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // =================================================================
-    // OTIMIZAÇÃO: Precarregamento inteligente de imagens do slider
+    // LÓGICA DE CARREGAMENTO DAS IMAGENS DO SLIDER (MÉTODO ROBUSTO)
     // =================================================================
-    const preloadSlideImages = () => {
-        const slides = document.querySelectorAll('.slide img');
-        
-        slides.forEach((img, index) => {
-            // Primeira imagem já tem loading="eager", então só marca como carregada
-            if (index === 0) {
-                if (img.complete) {
-                    img.classList.add('loaded');
+    const initSliderImages = () => {
+            const slideImages = document.querySelectorAll('.slide img');
+            
+            slideImages.forEach(imgNode => {
+                // Para cada tag <img> no HTML, verificamos seu estado.
+                
+                // Se o navegador já a carregou (por estar em cache, por exemplo),
+                // simplesmente adicionamos a classe para torná-la visível.
+                if (imgNode.complete) {
+                    imgNode.classList.add('loaded');
                 } else {
-                    img.addEventListener('load', function() {
-                        this.classList.add('loaded');
-                    });
+                    // Se o navegador ainda não a carregou (provavelmente por estar fora da tela),
+                    // nós forçamos o carregamento em segundo plano.
+                    const tempImage = new Image();
+                    tempImage.onload = function() {
+                        // Quando a imagem temporária terminar de carregar,
+                        // nós adicionamos a classe 'loaded' à imagem REAL no slider,
+                        // tornando-a finalmente visível.
+                        imgNode.classList.add('loaded');
+                    };
+                    // Ao definir o 'src', o navegador inicia o download da imagem.
+                    tempImage.src = imgNode.src;
                 }
-            } else {
-                // Precarrega a segunda imagem após 2 segundos
-                // E a terceira após 4 segundos
-                setTimeout(() => {
-                    if (!img.complete) {
-                        const preloadImg = new Image();
-                        preloadImg.onload = () => img.classList.add('loaded');
-                        preloadImg.src = img.src;
-                    }
-                }, index * 2000);
-            }
-        });
-    };
-    
+            });
+        };
+        
     // =================================================================
-    // LÓGICA DO SLIDER (COM RESET DE TIMING E PRELOAD)
+    // LÓGICA DO SLIDER
     // =================================================================
     const sliderSection = document.getElementById('hero');
     if (sliderSection) {
@@ -40,25 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let slideInterval;
         const totalSlides = document.querySelectorAll('.slide').length;
 
-        // Precarrega a próxima imagem
-        const preloadNextSlide = (index) => {
-            const nextIndex = (index + 1) % totalSlides;
-            const nextSlide = document.querySelectorAll('.slide')[nextIndex];
-            const img = nextSlide.querySelector('img');
-            
-            if (img && !img.classList.contains('loaded') && !img.complete) {
-                const preloadImg = new Image();
-                preloadImg.onload = () => img.classList.add('loaded');
-                preloadImg.src = img.src;
-            }
-        };
-
         const showSlide = (index) => {
             currentIndex = (index + totalSlides) % totalSlides;
             slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
-            // Precarrega a próxima imagem
-            preloadNextSlide(currentIndex);
         };
 
         const startSlideTimer = () => {
@@ -82,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
             resetSlideTimer(); 
         });
 
-        // Inicia o estado do slide, o timer e o precarregamento
-        showSlide(currentIndex); // <-- ADICIONE ESTA LINHA
+        // Inicia o carregador de imagens, o estado do slide e o timer
+        initSliderImages();
+        showSlide(currentIndex);
         startSlideTimer();
-        preloadSlideImages();
     }
     
     // =================================================================
@@ -219,54 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // =================================================================
-    // ANIMAÇÃO DOS SERVICE ITEMS NO MOBILE (SCROLL HORIZONTAL)
-    // =================================================================
-    if (window.innerWidth <= 998) {
-        const serviceItems = document.querySelectorAll('.service-item');
-        
-        if (serviceItems.length > 0) {
-            // Cria o observer para detectar quando o elemento está no centro
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Remove classe active de todos
-                        serviceItems.forEach(item => item.classList.remove('active'));
-                        // Adiciona classe active ao elemento no centro
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {
-                root: null,
-                rootMargin: '-45% 0px -45% 0px', // Detecta apenas quando está no centro
-                threshold: 0
-            });
-            
-            // Observa cada item de serviço
-            serviceItems.forEach(item => {
-                observer.observe(item);
-            });
-        }
-    }
-
-    // =================================================================
-    // PERFORMANCE: Lazy loading de iframes (se houver no futuro)
-    // =================================================================
-    const lazyIframes = document.querySelectorAll('iframe[data-src]');
-    if (lazyIframes.length > 0 && 'IntersectionObserver' in window) {
-        const iframeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = entry.target;
-                    iframe.src = iframe.dataset.src;
-                    iframeObserver.unobserve(iframe);
-                }
-            });
-        });
-        
-        lazyIframes.forEach(iframe => iframeObserver.observe(iframe));
-    }
-
-    // =================================================================
     // SCROLL SUAVE PARA LINKS INTERNOS (FALLBACK)
     // =================================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -294,58 +229,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // =================================================================
-    // OTIMIZAÇÃO: Remove listeners de eventos não utilizados
-    // =================================================================
-    window.addEventListener('load', function() {
-        // Remove loading spinners ou placeholders se houver
-        const loadingElements = document.querySelectorAll('.loading');
-        loadingElements.forEach(el => el.remove());
-        
-        // Log de performance (apenas em desenvolvimento)
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            if (performance && performance.timing) {
-                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                console.log(`Tempo de carregamento total: ${loadTime}ms`);
-            }
-        }
-    });
-
-    // =================================================================
-    // DETECÇÃO DE CONEXÃO LENTA (OPCIONAL)
-    // =================================================================
-    if ('connection' in navigator && navigator.connection.effectiveType) {
-        const connection = navigator.connection;
-        
-        // Se conexão for lenta (2g ou slow-2g), desabilita algumas animações
-        if (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g') {
-            document.documentElement.classList.add('slow-connection');
-            console.log('Conexão lenta detectada. Otimizações aplicadas.');
-        }
-    }
-
-    // =================================================================
-    // PREVENÇÃO DE CLIQUES ACIDENTAIS DURANTE CARREGAMENTO
-    // =================================================================
-    const preventClicksDuringLoad = () => {
-        const overlay = document.createElement('div');
-        overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;pointer-events:none;';
-        document.body.appendChild(overlay);
-        
-        window.addEventListener('load', () => {
-            setTimeout(() => overlay.remove(), 100);
-        });
-    };
-    
-    // Executa apenas se a página estiver carregando
-    if (document.readyState === 'loading') {
-        preventClicksDuringLoad();
-    }
-
 });
 
 // =================================================================
-// SERVICE WORKER (CACHE OFFLINE) - OPCIONAL
+// SERVICE WORKER (CACHE OFFLINE)
 // =================================================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
